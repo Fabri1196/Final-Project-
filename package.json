@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "joi": "^17.7.0",
+    "joi-bigjs-extension": "^2.2.2"
+  }
+}
