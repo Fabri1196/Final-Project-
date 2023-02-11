@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import Joi from "joi";
 import { FindSaleCommand } from "../../../application/commands/sale/find.command.customer";
 import findSaleHandler from "../../../application/handlers/sale/find.sale.handler";
 
@@ -6,15 +7,17 @@ class FindSaleAction {
     async run(req: Request, res: Response) {
         const {customer, date} = req.body;
 
-        // if(customer == ''){
-        //     res.status(200).send({message: 'Customer is required'});
-        //     return;
-        // }
+        const control = Joi.object({
+            customer: Joi.string().min(3).max(30).required(),
 
-        // if(medicine == ''){
-        //     res.status(200).send({message: 'Medicine is required'});
-        //     return;
-        // }
+            date: Joi.date().required(),
+        });
+
+        const {error} = control.validate({customer, date});
+
+        if(error){
+            return res.status(400).json({message: error.message});
+        }
 
         const command = new FindSaleCommand(customer, date);
         try{

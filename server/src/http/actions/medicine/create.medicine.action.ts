@@ -9,6 +9,7 @@ class CreateMedicineAction {
 
         const control = Joi.object({
             name: Joi.string().min(2).max(30).required(),
+            
             price: Joi.number().min(1).max(10000000).required(),
         })
 
