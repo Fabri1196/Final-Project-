@@ -28,6 +28,11 @@ class CustomerRepository {
         const customer = this.customers.find(c => c.getId() === id);
         return customer ? customer: null;
     }
+
+    async findByName(fullName: string): Promise<Customer | null>{
+        const customer = this.customers.find(m => m.getFullName() === fullName);
+        return customer ? customer: null;
+    }
 }
 
 export default new CustomerRepository();

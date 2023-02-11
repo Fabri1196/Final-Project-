@@ -3,11 +3,12 @@ import { FindSaleCommand } from "../../commands/sale/find.command.customer";
 
 class findSaleHandler{
     async execute(command: FindSaleCommand) {
-        const sale = await saleRepository.findByNameAndMedicine(command.getCustomer(), command.getDate());
+        const sale = await saleRepository.findByCustomerAndDate(command.getCustomer(), command.getDate());
+        
         if(!sale) {
-            throw new Error('Sale not found');
+            throw new Error('Sale nott found');
         }
         return sale;
     }
 }
-export default new findSaleHandler;
+export default new findSaleHandler();

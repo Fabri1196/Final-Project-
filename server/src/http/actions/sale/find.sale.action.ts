@@ -4,21 +4,27 @@ import findSaleHandler from "../../../application/handlers/sale/find.sale.handle
 
 class FindSaleAction {
     async run(req: Request, res: Response) {
-        const name: string = req?.query?.name as string;
-        const date: string = req?.query?.date as string;
+        const {customer, date} = req.body;
 
-        const day: Date = new Date(date);
-        const command = new FindSaleCommand(name, day);
+        // if(customer == ''){
+        //     res.status(200).send({message: 'Customer is required'});
+        //     return;
+        // }
 
+        // if(medicine == ''){
+        //     res.status(200).send({message: 'Medicine is required'});
+        //     return;
+        // }
+
+        const command = new FindSaleCommand(customer, date);
         try{
-            const sale = await findSaleHandler.execute(command);
+            const sales = await findSaleHandler.execute(command);
 
-            if(!sale) {
+            if(!sales) {
                 return res.status(404).json({ message: 'Sale not found'});
             }
-            return res.status(200).json({
-                ...sale
-            });
+            const filteredSales: object[] = sales.map(sale => ({...sale.toPrimitives()}))
+            return res.status(200).json(filteredSales);
         }
         catch (error){
             const { message } = error as Error;

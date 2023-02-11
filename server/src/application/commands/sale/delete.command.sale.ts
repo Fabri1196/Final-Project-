@@ -16,7 +16,7 @@ export class DeleteSaleCommand{
         this.date = date;
     }
 
-    getName(): string{
+    getCustomer(): string{
         return this.customer;
     }
     getDate(): Date{

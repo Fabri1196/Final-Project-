@@ -4,10 +4,10 @@ import deleteSaleHandler from "../../../application/handlers/sale/delete.sale.ha
 
 class DelecteSaleAction{
     async run(req: Request, res: Response){
-        const { name, date } = req.body;
+        const { customer, date } = req.body;
 
         try{
-            const command = new DeleteSaleCommand(name, date)
+            const command = new DeleteSaleCommand(customer, date)
 
             try{
                 await deleteSaleHandler.execute(command);

@@ -5,8 +5,8 @@ import { log } from 'debug';
 import expressWinston from 'express-winston';
 import winston from 'winston';
 import CustomerRoutes from './http/routes/customer.routes';
-import MedicineRoutes from './http/routes/medicine.route';
-//import BookingRoutes from './http/routes/booking.routes';
+import MedicineRoutes from './http/routes/medicine.routes';
+import SaleRoutes from './http/routes/sale.routes';
 // import { MongoDBSeeder } from './infrastructure/Seeders/SeederMongo';
 
 const app: express.Application = express();
@@ -33,7 +33,7 @@ app.use(express.json());
 // Add router
 routes.push(new CustomerRoutes(app));
 routes.push(new MedicineRoutes(app));
-// routes.push(new BookingRoutes(app));
+routes.push(new SaleRoutes(app));
 
 //Add Seeder
 // const seeder = new MongoDBSeeder();

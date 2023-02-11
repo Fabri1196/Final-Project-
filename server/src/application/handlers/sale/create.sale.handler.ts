@@ -7,30 +7,28 @@ import { Medicine } from "../../../domain/entities/medicine.entity";
 
 class CreateSaleHandler{
     async execute(command: CreateSaleCommand){
-        const customer = await customerRepository.findByIdentityCard(command.getCustomer());
+        const customer = await customerRepository.findByName(command.getCustomer());
         if(!customer){
             throw new Error("Customer does not exist")
         }
         
         const medicines = command.getMedicines();
-        const medicinesFromDb: Medicine[] = [];
-        for (let i = 0; i < medicines.length; i++){
-            const medicine = await medicineRepository.findByName(medicines[i]);
-            if(!medicine){
+        const medicinefromDb: Medicine[] = [];
+        for (let i = 0; i < medicines.length; i++) {
+            const medicine = await medicineRepository.findByName(medicines[i])
+            if(!medicine) {
                 throw new Error("Medicine does not exist");
-            }else{
-                medicinesFromDb.push(medicine);
+            }
+            else {
+                medicinefromDb.push(medicine);
             }
         }
 
-        const sale = Sale.create(
-            customer,
-            medicinesFromDb,
-            command.getNumberMedicine(),
-            command.getPrice(),
-            command.getDate());
+        const sale = Sale.create(customer, medicinefromDb, command.getNumberMedicine(), command.getDate());
 
         await saleRepository.save(sale);
+        
+        return sale;
     }
 }
 

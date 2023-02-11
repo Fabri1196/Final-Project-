@@ -6,59 +6,56 @@ export class Sale{
     private id: string;
     private customer: Customer;
     private medicines: Medicine[];
-    private numberMedicine: number [];
-    private price: number;
+    private numberMedicine: number[];
     private date: Date;
+    private price: number;
 
     constructor(
         id: string,
         customer: Customer,
         medicines: Medicine[],
-        numberMedicine: number [],
-        price: number,
-        date: Date)
+        numberMedicine: number[],
+        date: Date,
+        price: number)
     {
         this.id = id;
         this.customer = customer;
         this.medicines = medicines;
         this.numberMedicine = numberMedicine;
-        this.price = price;
         this.date = date;
+        this.price = price;
     }
 
     public static create(
         customer: Customer,
         medicines: Medicine[],
-        numberMedicine: number [],
-        price: number,
+        numberMedicine: number[],
         date: Date) 
-        : Sale{
+        {
         const id = v4();
-        const sale = new Sale(id, customer, medicines, numberMedicine, price, date);
+        const price = Sale.calculatePrice(medicines, numberMedicine);
+        const sale = new Sale(id, customer, medicines, numberMedicine, date, price);
 
         return sale;
     }
 
-    static fromPrimitive(primitives: any) : Sale{
-        const sale = new Sale(
-            primitives.id,
-            primitives.customer,
-            primitives.medicine,
-            primitives.numberMedicine,
-            primitives.price,
-            primitives.date);
+    // static fromPrimitive(primitives: any) : Sale{
+    //     const sale = new Sale(
+    //         primitives.id,
+    //         primitives.customer,
+    //         primitives.medicine,
+    //         primitives.numberMedicine,
+    //         primitives.date,
+    //         primitives.price);
 
-        return sale;
-    }
+    //     return sale;
+    // }
 
     changeCustomer(customer: Customer): void{
         this.customer = customer;
     }
     changeMedicine(medicines: Medicine[]): void{
         this.medicines = medicines
-    }
-    changePrice(price: number): void{
-        this.price = price;
     }
     changeDate(date: Date): void{
         this.date = date;
@@ -72,16 +69,35 @@ export class Sale{
     getMedicines(): Medicine[]{
         return this.medicines;
     }
-    getPrice(){
-        let price = 0;
-        for (let i = 0; i < this.medicines.length; i++){
-            price = this.medicines[i].getPrice() * this.numberMedicine[i]
-        }
-
-        this.price = price;
+    getNumberMedicine(): number[]{
+        return this.numberMedicine;
+    }
+    getPrice(): number{
         return this.price;
+    }
+    static calculatePrice(medicines: Medicine[], numberMedicine : number[]): number{
+        let price = 0
+        for(let i = 0; i < medicines.length; i++)
+        {
+            price = price + medicines[i].getPrice() * numberMedicine[i];
+        }
+        return price;
+    }
+    getName(): string{
+        const name = this.customer.getFullName();
+        return name;
     }
     getDate(): Date{
         return this.date;
+    }
+    toPrimitives(): any{
+        return{
+            id: this.id,
+            customer: this.customer.getFullName(),
+            medicines: this.medicines,
+            numberMedicine: this.numberMedicine,
+            date: this.date,
+            price: this.price,
+        }
     }
 }

@@ -6,7 +6,7 @@ class ListCustomerAction {
     async run(req: Request, res: Response){
         const { identityCard } = req.body;
 
-        if(identityCard == ''){
+        if(identityCard == "" || identityCard == null){
             res.status(400).send({message: 'Identity Card is required'});
             return;
         }

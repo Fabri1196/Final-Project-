@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import CommonRoutes from './common.routes';
-import createMedicineAction from '../../http/actions/medicine/create.medicine.action';
-import listMedicineAction from '../../http/actions/medicine/list.medicine.action';
+import createMedicineAction from '../actions/medicine/create.medicine.action';
+import listMedicineAction from '../actions/medicine/list.medicine.action';
 import updateMedicineAction from '../actions/medicine/update.medicine.action';
 
 class MedicineRoutes extends CommonRoutes {

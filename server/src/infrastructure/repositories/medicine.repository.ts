@@ -24,7 +24,7 @@ class MedicineRepository{
 
     async findByName(name: string): Promise<Medicine | null>{
         const medicine = this.medicines.find(m => m.getName() === name);
-        return (medicine) ? medicine: null;
+        return medicine ? medicine: null;
     }
 
     async getAllMedicines(): Promise<Medicine[]>{
