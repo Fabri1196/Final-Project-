@@ -1,4 +1,4 @@
-import { Customer } from "../../domain/entities/customer.entity";
+import { Customer } from "../../../domain/entities/customer.entity";
 
 class CustomerRepository {
     private customers: Customer[];

@@ -1,10 +1,10 @@
 export class CreateSaleCommand{
     private readonly customer: string;
-    private readonly medicines: string;
+    private readonly medicines: string[];
     private readonly numberMedicine: number[];
     private readonly date: Date;
 
-    constructor( customer: string, medicines: string, numberMedicine: number[], date: Date)
+    constructor( customer: string, medicines: string[], numberMedicine: number[], date: Date)
     {
         this.customer = customer;
         this.medicines = medicines;
@@ -15,7 +15,7 @@ export class CreateSaleCommand{
     getCustomer(): string{
         return this.customer;
     }
-    getMedicines(): string{
+    getMedicines(): string[]{
         return this.medicines;
     }
     getNumberMedicine(): number[]{

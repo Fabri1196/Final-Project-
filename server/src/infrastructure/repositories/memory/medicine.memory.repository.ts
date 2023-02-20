@@ -1,4 +1,4 @@
-import { Medicine } from "../../domain/entities/medicine.entity";
+import { Medicine } from "../../../domain/entities/medicine.entity";
 
 class MedicineRepository{
     private medicines : Medicine[];

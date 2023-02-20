@@ -1,16 +1,20 @@
 import { CreateMedicineCommand } from "../../commands/medicine/create.medicine.command";
 import { Medicine } from "../../../domain/entities/medicine.entity";
-import medicineRepository from "../../../infrastructure/repositories/medicine.repository";
+import medicineMemoryRepository from "../../../infrastructure/repositories/memory/medicine.memory.repository";
 
 class CreateMedicineHandler{
     async execute(command: CreateMedicineCommand){
         const medicine = Medicine.create(command.getName(), command.getPrice());
 
-        if(await medicineRepository.findByName(medicine.getName())){
+        if(await medicineMemoryRepository.findByName(medicine.getName())){
             throw new Error('Medicine already exist');
         }
 
-        await medicineRepository.save(medicine);
+        if (command.getPrice() < 0) {
+            throw new Error('Invalid Price');
+        }
+
+        await medicineMemoryRepository.save(medicine);
     }
 }
 

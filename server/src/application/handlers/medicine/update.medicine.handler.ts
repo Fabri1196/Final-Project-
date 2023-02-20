@@ -1,9 +1,9 @@
 import { UpdateMedicineCommand } from "../../commands/medicine/update.medicine.command";
-import medicineRepository from "../../../infrastructure/repositories/medicine.repository";
+import medicineMemoryRepository from "../../../infrastructure/repositories/memory/medicine.memory.repository";
 
 class UpdateMedicineHandler{
     async execute(command: UpdateMedicineCommand){
-        const medicine = await medicineRepository.findById(command.getId());
+        const medicine = await medicineMemoryRepository.findById(command.getId());
 
         if(!medicine){
             throw new Error('Medicine not found');
@@ -12,7 +12,7 @@ class UpdateMedicineHandler{
         medicine.changeName(command.getName());
         medicine.changePrice(command.getPrice());
 
-        await medicineRepository.save(medicine);
+        await medicineMemoryRepository.save(medicine);
     }
 }
 

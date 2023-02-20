@@ -1,6 +1,6 @@
 import { Customer } from "../../../domain/entities/customer.entity"; 
 import { CreateCustomerCommand } from "../../commands/customer/create.customer.command";
-import CustomerRepository from "../../../infrastructure/repositories/customer.repository";
+import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
 import { validateEmail, validateFullName, validateIdentityCard } from "../../../validations/customer.validation";
 
 class CreateCustomerHandler{
@@ -20,11 +20,16 @@ class CreateCustomerHandler{
             }
         }
 
-        if(await CustomerRepository.findByIdentityCard(customer.getIdentityCard())){
+        if(await customerMemoryRepository.findByIdentityCard(customer.getIdentityCard())){
             throw new Error('Customer already exists');
         }
 
-        await CustomerRepository.save(customer);
+        if(await customerMemoryRepository.findByName(customer.getFullName())){
+            throw new Error('Customer already exists');
+        }
+
+
+        await customerMemoryRepository.save(customer);
     }
 }
 

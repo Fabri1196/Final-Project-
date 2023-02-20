@@ -1,9 +1,9 @@
 import { UpdateCustomerCommand } from "../../commands/customer/update.customer.command";
-import customerRepository from "../../../infrastructure/repositories/customer.repository";
+import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
 
 class UpdateCustomerHandler {
     async execute(command: UpdateCustomerCommand) {
-        const customer = await customerRepository.findById(command.getId());
+        const customer = await customerMemoryRepository.findById(command.getId());
 
         if(!customer){
             throw new Error('Customer not found')
@@ -11,7 +11,7 @@ class UpdateCustomerHandler {
         customer.changeFullName(command.getFullName());
         customer.changeIdentityCard(command.getIdentityCard());
         customer.changeHealthSystem(command.getHealthSystem());
-        await customerRepository.save(customer);
+        await customerMemoryRepository.save(customer);
     }
 }
 

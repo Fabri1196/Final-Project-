@@ -1,4 +1,4 @@
-import { Sale } from "../../domain/entities/sale.entity";
+import { Sale } from "../../../domain/entities/sale.entity";
 
 class SaleRepository{
     private sales: Sale[];

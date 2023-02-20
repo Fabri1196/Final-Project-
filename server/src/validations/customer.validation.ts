@@ -1,5 +1,5 @@
 export function validateFullName(fullName: string): Boolean {
-    const validation = /^[a-zA-Z]{3,30}$/;
+    const validation = /^[a-zA-Z ]{2,30}$/;
     return validation.test(fullName);
 }
 
