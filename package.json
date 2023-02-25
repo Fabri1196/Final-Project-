@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "joi": "^17.7.0",
-    "joi-bigjs-extension": "^2.2.2"
+    "joi-bigjs-extension": "^2.2.2",
+    "mongoose": "^6.10.0"
   }
 }

@@ -1,7 +1,8 @@
 import { Customer } from "../../../domain/entities/customer.entity"; 
 import { CreateCustomerCommand } from "../../commands/customer/create.customer.command";
-import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
+//import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
 import { validateEmail, validateFullName, validateIdentityCard } from "../../../validations/customer.validation";
+import customerMongodbRepository from "../../../infrastructure/repositories/mongodb/customer.mongodb.repository";
 
 class CreateCustomerHandler{
     async execute(command: CreateCustomerCommand){
@@ -20,16 +21,16 @@ class CreateCustomerHandler{
             }
         }
 
-        if(await customerMemoryRepository.findByIdentityCard(customer.getIdentityCard())){
+        if(await customerMongodbRepository.findByIdentityCard(customer.getIdentityCard())){
             throw new Error('Customer already exists');
         }
 
-        if(await customerMemoryRepository.findByName(customer.getFullName())){
+        if(await customerMongodbRepository.findByName(customer.getFullName())){
             throw new Error('Customer already exists');
         }
 
 
-        await customerMemoryRepository.save(customer);
+        await customerMongodbRepository.save(customer);
     }
 }
 

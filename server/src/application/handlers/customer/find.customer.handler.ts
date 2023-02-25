@@ -1,6 +1,7 @@
 import { FindByIdentityCardCommand } from "../../commands/customer/findByIdentityCard.customer.command";
-import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
+//import customerMemoryRepository from "../../../infrastructure/repositories/memory/customer.memory.repository";
 import { validateIdentityCard } from "../../../validations/customer.validation";
+import customerMongodbRepository from "../../../infrastructure/repositories/mongodb/customer.mongodb.repository";
 
 class FindByIdentityCardCustomerHandler {
     async execute(command: FindByIdentityCardCommand){
@@ -8,7 +9,7 @@ class FindByIdentityCardCustomerHandler {
             throw new Error('Invalid identity card')
         }
 
-        const customer = await customerMemoryRepository.findByIdentityCard(command.getIdentityCard());
+        const customer = await customerMongodbRepository.findByIdentityCard(command.getIdentityCard());
 
         if(!customer){
             throw new Error('Customer not found');

@@ -26,8 +26,8 @@ class FindSaleAction {
             if(!sales) {
                 return res.status(404).json({ message: 'Sale not found'});
             }
-            const filteredSales: object[] = sales.map(sale => ({...sale.toPrimitives()}))
-            return res.status(200).json(filteredSales);
+            // const filteredSales: object[] = sales.map(sale => ({...sale.toPrimitives()}))
+            // return res.status(200).json(filteredSales);
         }
         catch (error){
             const { message } = error as Error;

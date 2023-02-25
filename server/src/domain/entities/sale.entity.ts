@@ -39,17 +39,17 @@ export class Sale{
         return sale;
     }
 
-    // static fromPrimitive(primitives: any) : Sale{
-    //     const sale = new Sale(
-    //         primitives.id,
-    //         primitives.customer,
-    //         primitives.medicine,
-    //         primitives.numberMedicine,
-    //         primitives.date,
-    //         primitives.price);
+    static fromPrimitives(primitives: any) : Sale{
+        const sale = new Sale(
+            primitives.id,
+            primitives.customer,
+            primitives.medicine,
+            primitives.numberMedicine,
+            primitives.date,
+            primitives.price);
 
-    //     return sale;
-    // }
+        return sale;
+    }
 
     changeCustomer(customer: Customer): void{
         this.customer = customer;
