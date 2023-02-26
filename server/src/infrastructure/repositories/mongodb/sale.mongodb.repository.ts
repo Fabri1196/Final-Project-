@@ -73,38 +73,6 @@ class Repository {
             await mongoClient.close()
         }
     }
-
-    async findByCustomerAndMedicine(customer: string, medicine: string): Promise<Sale | null> {
-        console.log({ customer, medicine })
-        try {
-            const today = Date.now();
-            const date = new Date(today);
-            console.log(date);
-            await mongoClient.connect();
-            const sale = (await mongoClient
-                .db(this.database)
-                .collection(this.collection)
-                .findOne(
-                    {
-                        'medicines.name': medicine,
-                        'customer.fullName': customer,
-                        date: date,
-                    },
-                    { projection: { _id: 0}},
-                ))
-                console.log(sale)
-            if(sale) {
-                return Sale.fromPrimitives(sale);
-            } else {
-                return null;                
-            }
-        } catch (error) {
-            const { message } = error as Error;
-            throw new Error(message);
-        } finally {
-            await mongoClient.close()
-        }
-    }
 }
 
 export default new Repository();
