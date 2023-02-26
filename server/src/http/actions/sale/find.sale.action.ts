@@ -28,6 +28,9 @@ class FindSaleAction {
             }
             // const filteredSales: object[] = sales.map(sale => ({...sale.toPrimitives()}))
             // return res.status(200).json(filteredSales);
+            return res.status(200).json({
+                ...sales.toPrimitives(),
+            });
         }
         catch (error){
             const { message } = error as Error;

@@ -3,9 +3,17 @@ export class FindSaleCommand{
     private readonly date: Date;
 
     constructor(customer: string, date: Date){
+        
+        if(!customer){
+            throw new Error("Customer is required");
+        }
+        if(!date){
+            throw new Error("Date is required");
+        }
+
         this.customer = customer;
         this.date = date;
-    } 
+    }
 
     getCustomer(): string{
         return this.customer;

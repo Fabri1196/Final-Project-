@@ -10,6 +10,7 @@ class UpdateCustomerAction {
                 req.body.fullName,
                 req.body.identityCard,
                 req.body.healthSystem,
+                req.body.email,
             );
 
             try{

@@ -23,7 +23,7 @@ export class Customer{
     }
 
     static fromPrimitives(primitives: any): Customer{
-        const customer = new Customer(primitives.id, primitives.from, primitives.identityCard, primitives.healthSystem, primitives.email);
+        const customer = new Customer(primitives.id, primitives.fullName, primitives.identityCard, primitives.healthSystem, primitives.email);
 
         return customer;
     }
@@ -31,12 +31,14 @@ export class Customer{
     changeFullName(fullName: string): void{
         this.fullName = fullName;
     }
-
     changeIdentityCard(identityCard: string): void{
         this.identityCard = identityCard;
     }
     changeHealthSystem(healthSystem: string): void{
         this.healthSystem = healthSystem;
+    }
+    changeEmail(email: string): void{
+        this.email = email;
     }
     getId(): string{
         return this.id;

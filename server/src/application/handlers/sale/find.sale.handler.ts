@@ -7,7 +7,7 @@ class findSaleHandler{
         const sale = await saleMongodbRepository.findByCustomerAndDate(command.getCustomer(), command.getDate());
         
         if(!sale) {
-            throw new Error('Sale nott found');
+            throw new Error('Sale not found');
         }
         return sale;
     }

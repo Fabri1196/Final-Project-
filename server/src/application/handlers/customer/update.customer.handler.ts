@@ -12,6 +12,7 @@ class UpdateCustomerHandler {
         customer.changeFullName(command.getFullName());
         customer.changeIdentityCard(command.getIdentityCard());
         customer.changeHealthSystem(command.getHealthSystem());
+        customer.changeEmail(command.getEmail());
         await customerMongodbRepository.save(customer);
     }
 }

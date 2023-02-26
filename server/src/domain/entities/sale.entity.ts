@@ -43,7 +43,7 @@ export class Sale{
         const sale = new Sale(
             primitives.id,
             primitives.customer,
-            primitives.medicine,
+            primitives.medicines,
             primitives.numberMedicine,
             primitives.date,
             primitives.price);
@@ -93,7 +93,7 @@ export class Sale{
     toPrimitives(): any{
         return{
             id: this.id,
-            customer: this.customer.getFullName(),
+            customer: this.customer,
             medicines: this.medicines,
             numberMedicine: this.numberMedicine,
             date: this.date,
