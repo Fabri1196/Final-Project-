@@ -13,13 +13,13 @@ class CreateSaleHandler{
         const numberMedicine = command.getNumberMedicine();
         for(let i = 0; i < numberMedicine.length; i++){
             if(numberMedicine[i] <= 0){
-                throw new Error('Number of Medicine must be greater than 0');
+                throw new Error('Número de medicamento debe ser mayor a 0');
             }
         }
         
         const customer = await customerMongodbRepository.findByName(command.getCustomer());
         if(!customer){
-            throw new Error("Customer does not exist")
+            throw new Error("No existe el cliente")
         }
         
         const medicines = command.getMedicines();
@@ -27,7 +27,7 @@ class CreateSaleHandler{
         for (let i = 0; i < medicines.length; i++) {
             const medicine = await medicineMongodbRepository.findByName(medicines[i])
             if(!medicine) {
-                throw new Error("Medicine does not exist");
+                throw new Error("No existe el medicamento");
             }
             else {
                 medicineDb.push(medicine);

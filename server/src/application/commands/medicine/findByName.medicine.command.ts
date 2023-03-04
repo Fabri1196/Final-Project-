@@ -3,7 +3,7 @@ export class FindByNameCommand{
 
     constructor(name: string){
         if(!name){
-            throw new Error('Name is required');
+            throw new Error('Nombre es requerido');
         }
         this.name = name;
     }

@@ -9,22 +9,22 @@ export class UpdateCustomerCommand{
 
     constructor(id: string, fullName: string, identityCard: string, healthSystem: string, email: string){
         if(!uuidValidate(id)) {
-            throw new Error('Id must be a valid uuid');
+            throw new Error('Id debe ser un uuid válido');
         }
 
         if(!fullName) {
-            throw new Error('FullName must be specified');
+            throw new Error('Nombre debe ser especificado');
         }
 
         if(!identityCard){
-            throw new Error('Identity Card must be specified');
+            throw new Error('Número de documento debe ser especificado');
         }
 
         if(!healthSystem){
-            throw new Error('Health System must be specified');
+            throw new Error('Obra social debe ser especificada');
         }
         if(!email){
-            throw new Error('Email must be specified');
+            throw new Error('Email debe ser especificado');
         }
 
         this.id = id;

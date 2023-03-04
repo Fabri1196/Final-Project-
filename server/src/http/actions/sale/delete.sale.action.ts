@@ -11,12 +11,12 @@ class DelecteSaleAction{
 
             try{
                 await deleteSaleHandler.execute(command);
+                return res.status(204).json({message: 'Venta eliminada'})
             }
             catch(error){
                 const message = error as Error;
                 return res.status(404).json({message: message});
             }
-            return res.status(204).send();
         } catch(error){
             const message = error as Error;
             return res.status(400).json({message: message});

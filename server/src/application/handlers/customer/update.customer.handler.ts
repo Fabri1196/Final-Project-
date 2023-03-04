@@ -7,7 +7,7 @@ class UpdateCustomerHandler {
         const customer = await customerMongodbRepository.findById(command.getId());
 
         if(!customer){
-            throw new Error('Customer not found')
+            throw new Error('Cliente no encontrado')
         }
         customer.changeFullName(command.getFullName());
         customer.changeIdentityCard(command.getIdentityCard());

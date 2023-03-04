@@ -17,10 +17,10 @@ class UpdateCustomerAction {
                 await updateCustomerHandler.execute(command);
             } catch(error){
                 const{message} = error as Error;
-                return res.status(400).json({message: message});
+                return res.status(404).json({message: message});
             }
 
-            return res.status(200).json({message: 'Customer updated successfully'});
+            return res.status(204).json({message: 'Cliente actualizado exitosamente'});
         } catch(error){
             const{message} = error as Error;
             res.status(400).json({message: message});

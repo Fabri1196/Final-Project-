@@ -7,7 +7,7 @@ class ListCustomerAction {
         const { identityCard } = req.body;
 
         if(identityCard == "" || identityCard == null){
-            res.status(400).send({message: 'Identity Card is required'});
+            res.status(400).send({message: 'Número de documento es requerido'});
             return;
         }
 
@@ -15,7 +15,7 @@ class ListCustomerAction {
         try{
             const customer = await findCustomerHandler.execute(command);
             if(!customer){
-                return res.status(404).json({message:'Customer not found'});
+                return res.status(404).json({message:'Cliente no encontrado'});
             }
             return res.status(200).json({
                 ...customer.toPrimitives(),

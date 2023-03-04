@@ -7,7 +7,7 @@ class UpdateMedicineHandler{
         const medicine = await medicineMongodbRepository.findById(command.getId());
 
         if(!medicine){
-            throw new Error('Medicine not found');
+            throw new Error('Medicamento no encontrado');
         }
 
         medicine.changeName(command.getName());

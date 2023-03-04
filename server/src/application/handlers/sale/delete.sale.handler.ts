@@ -7,10 +7,10 @@ class DeleteSaleHandler {
         const sale = saleMongodbRepository.findByCustomerAndDate(command.getCustomer(), command.getDate());
 
         if(!sale){
-            throw new Error('Sale nit found');
+            throw new Error('Venta no encontrada');
         }
 
-        //await saleMongodbRepository.deleteById(command.getCustomer(), command.getDate());
+        await saleMongodbRepository.deleteByCustomerAndDate(command.getCustomer(), command.getDate());
     }
 }
 

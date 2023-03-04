@@ -31,6 +31,7 @@ class Repository {
                     },
                     { projection: { _id: 0 }},
                 ))
+                console.log(medicine)
                 if (medicine) {
                     return Medicine.fromPrimitives(medicine);
                 } else {
@@ -47,15 +48,16 @@ class Repository {
     async findByName(name: string): Promise<Medicine | null> {
         try {
             await mongoClient.connect();
-            const medicine = mongoClient
+            const medicine = (await mongoClient
                 .db(this.database)
                 .collection(this.collection)
                 .findOne(
                     {
-                        'name': name,
-                    }
-                )
-                console.log(medicine)
+                        name: name,
+                    },
+                    { projection: { _id: 0} },
+                ))
+                console.log(medicine);
             if (medicine) {
                 return Medicine.fromPrimitives(medicine);
             } else {

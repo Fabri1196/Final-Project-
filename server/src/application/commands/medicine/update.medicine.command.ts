@@ -7,13 +7,13 @@ export class UpdateMedicineCommand{
 
     constructor(id: string, name: string, price: number){
         if(!uuidValidate(id)){
-            throw new Error('Id must be a valid uuid');
+            throw new Error('Id debe ser un uuid válido');
         }
         if(!name){
-            throw new Error('Name must be specified');
+            throw new Error('Nombre debe ser especificado');
         }
         if(!price){
-            throw new Error('Price must be specified');
+            throw new Error('Precio debe ser especificado');
         }
 
         this.id = id;

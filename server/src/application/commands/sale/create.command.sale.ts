@@ -24,13 +24,4 @@ export class CreateSaleCommand{
     getDate(): Date{
         return this.date;
     }
-    // toPrimitives() {
-    //     return {
-    //         customer: this.customer,
-    //         medicines: this.medicines,
-    //         numberMedicine: this.numberMedicine,
-    //         price: this.price,
-    //         date: this.date
-    //     };
-    // }
 }

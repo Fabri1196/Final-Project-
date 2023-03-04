@@ -3,7 +3,7 @@ export class FindByIdentityCardCommand {
 
     constructor(indentityCard: string){
         if(!indentityCard){
-            throw new Error("Identity Card is required");
+            throw new Error("Número de documento es requerido");
         }
         this.indentityCard = indentityCard;
     }

@@ -6,13 +6,13 @@ import customerMongodbRepository from "../../../infrastructure/repositories/mong
 class FindByIdentityCardCustomerHandler {
     async execute(command: FindByIdentityCardCommand){
         if(!validateIdentityCard(command.getIdentityCard())){
-            throw new Error('Invalid identity card')
+            throw new Error('Número de documento no válido')
         }
 
         const customer = await customerMongodbRepository.findByIdentityCard(command.getIdentityCard());
 
         if(!customer){
-            throw new Error('Customer not found');
+            throw new Error('Cliente no encontrado');
         }
         return customer;
     }

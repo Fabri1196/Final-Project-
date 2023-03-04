@@ -23,7 +23,7 @@ class CreateCustomerAction {
             const command = new CreateCustomerCommand(fullName, identityCard, healthSystem, email);
             await createCustomerHandler.execute(command);
 
-            return res.status(201).json({ message: 'Customer created successfully' });
+            return res.status(201).json({ message: 'Cliente creado exitosamente' });
         }
         catch (error) {
             const { message } = error as Error;

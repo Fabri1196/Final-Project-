@@ -18,11 +18,11 @@ class UpdateMedicineAction{
                 const {message} = error as Error;
                 res.status(404).json({message: message});
             }
-            return res.status(200).json({message: 'Medication updated succesfully'})
+            return res.status(204).json({message: 'Medicamento actualizado exitosamente'})
         }
         catch(error){
             const {message} = error as Error;
-            res.status(500).json({message: message});
+            res.status(400).json({message: message});
         }
     }
 

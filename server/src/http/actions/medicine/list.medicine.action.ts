@@ -7,7 +7,7 @@ class ListMedicineAction {
         const {name} = req.body;
 
         if(name == ''){
-            res.status(200).send({message: 'Name is required'});
+            res.status(400).send({message: 'El nombre es requerido'});
             return;
         }
 
@@ -15,7 +15,7 @@ class ListMedicineAction {
         try{
             const medicine = await findByNameHandler.execute(command);
             if(!medicine){
-                return res.status(404).json({message: 'Customer not found'});
+                return res.status(404).json({message: 'Medicamento no encontrado'});
             }
             return res.status(200).json({
                 ...medicine.toPrimitives(),

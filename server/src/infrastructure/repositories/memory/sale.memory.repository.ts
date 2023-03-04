@@ -49,7 +49,7 @@ class SaleRepository{
         return sale ? sale : null;
     }
 
-    async deleteById(customer: string, date: Date): Promise<void> {
+    async deleteByCustomerAndDate(customer: string, date: Date): Promise<void> {
         this.sales = this.sales.filter(
             ((a: { customers: { getName: () => string } }) => a.customers.getName() !== customer) &&
              (a => a.getDate() > date));

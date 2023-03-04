@@ -23,7 +23,7 @@ class CreateMedicineAction {
             const command = new CreateMedicineCommand(name, price);
             await createMedicineHandler.execute(command);
 
-            return res.status(200).json({message: 'Medicine created successfully'});
+            return res.status(201).json({message: 'Medicamento creado exitosamente'});
         }catch(error){
             const {message} = error as Error;
             res.status(404).json({message: message});

@@ -24,13 +24,13 @@ class CreateSaleAction{
         }
 
         if(medicines.length != numberMedicine.length){
-           return res.status(400).json({message: 'Amount of medicines and numberMedicine are not the same'}) 
+           return res.status(400).json({message: 'Cantidad de medicamentos y número de medicamentos no coincide'}) 
         }
 
         try{
             const command = new CreateSaleCommand(customer, medicines, numberMedicine, date);
             const sale = await CreateSaleHandler.execute(command);
-            return res.status(200).json({message: 'Sale created successfully. Total: $' + sale.getPrice()});
+            return res.status(201).json({message: 'Venta creada exitosamente. Total: $' + sale.getPrice()});
 
         }
         catch(e){

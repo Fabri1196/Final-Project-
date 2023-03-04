@@ -7,7 +7,7 @@ class FindByNameHandler{
         const medicine = await medicineMongodbRepository.findByName(command.getName());
 
         if(!medicine){
-            throw new Error('Medicine not found');
+            throw new Error('Medicamento no encontrado');
         }
         return medicine;
     }

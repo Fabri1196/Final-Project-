@@ -7,10 +7,10 @@ export class DeleteSaleCommand{
         date: Date
     ){
         if(!customer){
-            throw new Error("Customer is required");
+            throw new Error("Cliente es requerido");
         }
         if(!date){
-            throw new Error("Date is required");
+            throw new Error("Fecha es requerida");
         }
         this.customer = customer;
         this.date = date;

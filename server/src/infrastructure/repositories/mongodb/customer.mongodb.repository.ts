@@ -31,6 +31,7 @@ class Repository {
                     },
                     { projection: { _id: 0} },
                 ))
+                console.log(customer)
             if (customer) {
                 return Customer.fromPrimitives(customer);
             } else {

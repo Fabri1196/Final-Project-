@@ -9,24 +9,24 @@ class CreateCustomerHandler{
         const customer = Customer.create(command.getFullName(), command.getIdentityCard(), command.getHealthSystem(), command.getEmai());
 
         if(!validateFullName(customer.getFullName())){
-            throw new Error("Invalid fullname");
+            throw new Error("Nombre no válido");
         }
 
         if(!validateIdentityCard(customer.getIdentityCard())){
-            throw new Error("Invalid identity card");
+            throw new Error("Número de documento no válido");
         }
         if(customer.getEmail()){
             if(!validateEmail(customer.getEmail())){
-                throw new Error("Invalid email");
+                throw new Error("Email no válido");
             }
         }
 
         if(await customerMongodbRepository.findByIdentityCard(customer.getIdentityCard())){
-            throw new Error('Customer already exists');
+            throw new Error('Ya existe el cliente');
         }
 
         if(await customerMongodbRepository.findByName(customer.getFullName())){
-            throw new Error('Customer already exists');
+            throw new Error('Ya existe el cliente');
         }
 
 

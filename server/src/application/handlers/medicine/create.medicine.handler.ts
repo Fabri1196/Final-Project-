@@ -8,11 +8,11 @@ class CreateMedicineHandler{
         const medicine = Medicine.create(command.getName(), command.getPrice());
 
         if(await medicineMongodbRepository.findByName(medicine.getName())){
-            throw new Error('Medicine already exist');
+            throw new Error('Medicamento ya existe');
         }
 
         if (command.getPrice() < 0) {
-            throw new Error('Invalid Price');
+            throw new Error('Precio no válido');
         }
 
         await medicineMongodbRepository.save(medicine);

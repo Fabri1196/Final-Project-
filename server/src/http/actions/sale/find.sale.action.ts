@@ -24,7 +24,7 @@ class FindSaleAction {
             const sales = await findSaleHandler.execute(command);
 
             if(!sales) {
-                return res.status(404).json({ message: 'Sale not found'});
+                return res.status(404).json({ message: 'Venta no encontrada'});
             }
             // const filteredSales: object[] = sales.map(sale => ({...sale.toPrimitives()}))
             // return res.status(200).json(filteredSales);
@@ -34,7 +34,7 @@ class FindSaleAction {
         }
         catch (error){
             const { message } = error as Error;
-            return res.status(500).json({ message: message });
+            return res.status(400).json({ message: message });
         }
     }
 }
