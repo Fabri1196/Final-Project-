@@ -57,7 +57,6 @@ class Repository {
                     },
                     { projection: { _id: 0} },
                 ))
-                console.log(medicine);
             if (medicine) {
                 return Medicine.fromPrimitives(medicine);
             } else {

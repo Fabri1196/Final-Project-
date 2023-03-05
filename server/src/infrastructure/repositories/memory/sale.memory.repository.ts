@@ -26,26 +26,7 @@ class SaleRepository{
         let sale = this.sales.filter(
             s => s.getCustomer().getFullName() == customer &&
              s.getDate() >= date
-            // (s => s.getMedicines().getName() == medicine)
-
         );
- 
-        // let s = this.sales.filter(a => a.getDate() == date);
-
-        // if(s == null){
-        //     return null;
-        // }
-         
-        // let sale;
-        // for(let i = 0; i < s.length; i++){
-        //     let sa = s[i].getMedicines();
-        //     for(let j = 0; j < sa.length; i ++){
-        //         if(sa[j].getName() == medicine){
-        //             sale = s[i];
-        //         }
-        //     }
-        // }
-        
         return sale ? sale : null;
     }
 
